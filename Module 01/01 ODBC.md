@@ -4,6 +4,7 @@
 ```
 yum install unixODBC mariadb-connector-odbc
 
+apt install unixODBC mariadb-connector-odbc
 ```
 
 Поиск расположения файлов конфигурации
