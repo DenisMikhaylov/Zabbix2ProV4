@@ -286,12 +286,17 @@ UserParameter=custom.vfs.dev.write.ms[*],cat /sys/class/block/$1/stat | awk '{pr
 UserParameter=custom.vfs.dev.io.active[*],cat /sys/class/block/$1/stat | awk '{print $$9}'
 UserParameter=custom.vfs.dev.io.ms[*],cat /sys/class/block/$1/stat | awk '{print $$10}'
 UserParameter=custom.vfs.dev.weight.io.ms[*],cat /sys/class/block/$1/stat | awk '{print $$11}'
-
-UserParameter=Storage.discovery.macro[*],echo $0 | awk 'BEGIN { RS=","; FS=" "; print "{ \"data\":\n ["} {if (NR != 1 ) print(","); printf "  { \"{#FSNAME}\":\""$$1"\", \"{#FSPATH}\":\""$$2"\" }"} END{print "\n ]\n}"}'
-UserParameter=Storage.discovery.config[*],cat $1 | awk 'BEGIN { FS=" "; print "{ \"data\":\n ["} {if (NR != 1 ) print(","); printf "  { \"{#FSNAME}\":\""$$1"\", \"{#FSPATH}\":\""$$2"\" }"} END{print "\n ]\n}"}'
+UserParameter=my.disks.discovery,/bin/lsblk -dJ | /bin/sed -e 's/blockdevices/data/' -e 's/name/{#NAME}/g' -e 's/type/{#TYPE}/g'
 ```
 ```
 systemctl restart zabbix-agent
+```
+
+
+Проверяем раюоту нового параметра , переключаемся на zabbix
+
+```
+# zabbix_get -s 192.168.10.1 -k my.disks.discovery | jq
 ```
 
 Шаг 2. Создание discovery
@@ -307,3 +312,30 @@ Host: Zabbix server
 ```
 Шаг 3. Создание Item
 Создайте item на остальные userparametr
+Создаем шаблон 
+
+```
+Templates->Create template
+  Template name: My Template Linux disks utilization
+  Groups: Templates/Server hardware
+
+  Discovery rules->
+    Name: my disks discovery
+    Key: my.disks.discovery
+    Filters->
+      {#TYPE} matches disk
+```
+
+создание item prototypes
+
+```
+    Item prototypes->
+      Name: disk {#NAME} read bytes
+      Key: custom.vfs.dev.read.ops[{#NAME}]
+      Type of information: Numeric (float)
+
+      Name: disk {#NAME} write bytes
+      Key: custom.vfs.dev.write.ops[{#NAME}]
+      Type of information: Numeric (float)
+```
+по аналогии добавить все остальные параметры.
