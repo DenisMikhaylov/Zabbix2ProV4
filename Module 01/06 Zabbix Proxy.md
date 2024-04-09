@@ -37,7 +37,7 @@ nano /etc/zabbix/zabbix_proxy.conf
 Меняем следующие значения:\
 Server=    ваш ip adresss\
 Hostname=  такой же нужно будет прописать на основном сервере\
-Proxy=1
+ProxyMode=1
 DBPassword=password
 TLSAccept=psk
 TLSConnect=psk\
