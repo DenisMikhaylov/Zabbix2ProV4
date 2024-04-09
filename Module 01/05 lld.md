@@ -188,7 +188,6 @@ Alert - Actions - Auto registration
 C:\Program Files\Zabbix Agent\zabbix_agentd.conf
 
 ```
-LogFile=C:\Program Files\Zabbix Agent\zabbix_agentd.log
 #Server=<ip address zabbix or Name>
 ListenIP=0.0.0.0
 ServerActive=<ip address zabbix or Name>
