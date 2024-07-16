@@ -39,7 +39,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     \"params\": {},
     \"auth\": \"${AUTH}\",
     \"id\": 2
-} " http://127.0.0.1/zabbix/api_jsonrpc.php
+} " http://<имя сервера>/api_jsonrpc.php
 ```
 ```
 # /root/zab_get_hosts.sh | jq
@@ -67,7 +67,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     },
     \"auth\": \"${AUTH}\",
     \"id\": 2
-} " http://127.0.0.1/zabbix/api_jsonrpc.php
+} " http://<имя сервера>/api_jsonrpc.php
 
 ```
 ```
@@ -96,7 +96,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     },
     \"auth\": \"${AUTH}\",
     \"id\": 2
-} " http://127.0.0.1/zabbix/api_jsonrpc.php
+} " http://<имя сервера>/api_jsonrpc.php
 ```
 ```
 # /root/zab_set_map_name.sh <id> <Name map>
