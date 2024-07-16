@@ -109,7 +109,9 @@ Parameter: ]
 
 
 Задание 4. Внешние скрипты
+
 Шаг 1. Простой скрипт
+
 Проверка расположения внешних скриптов на Zabbix server
 ```
 # zabbix_server --help | grep ExternalScripts
@@ -185,6 +187,7 @@ fi
 
 speedtest-cli --csv $A | cut -d',' -f $F
 ```
+
 Тестируем работу скрипта
 ```
 # /etc/zabbix/externalscripts/speedtest.sh upload
@@ -294,7 +297,7 @@ systemctl restart zabbix-agent
 ```
 
 
-Проверяем раюоту нового параметра , переключаемся на zabbix
+Проверяем работу нового параметра , переключаемся на zabbix
 
 ```
 # zabbix_get -s 192.168.10.1 -k my.disks.discovery | jq
@@ -312,7 +315,7 @@ Host: Zabbix server
 
 ```
 Шаг 3. Создание Item
-Создайте item на остальные userparametr
+Создайте item на остальные userparameter
 Создаем шаблон 
 
 ```
