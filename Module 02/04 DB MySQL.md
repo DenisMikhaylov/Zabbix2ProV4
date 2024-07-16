@@ -14,23 +14,22 @@ use zabbix;
 ```
 SELECT FROM_UNIXTIME(MIN(clock)) FROM history_uint;
 ```
-Введите свое время
+Для работы параметры времени надо взять по дням от начала курса.
+вместо 2020_12_19-22 подставить свои значения
+
 таблица хистори рекомендация сделать по дням
 ```
 ALTER TABLE history_uint PARTITION BY RANGE ( clock)
 (PARTITION p2020_12_19 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-20 00:00:00")) ENGINE = InnoDB,
 PARTITION p2020_12_20 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-21 00:00:00")) ENGINE = InnoDB,
 PARTITION p2020_12_21 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-22 00:00:00")) ENGINE = InnoDB,
-PARTITION p2020_12_22 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-23 00:00:00")) ENGINE = InnoDB,
-…
-PARTITION p2021_02_18 VALUES LESS THAN (UNIX_TIMESTAMP("2021-02-19 00:00:00")) ENGINE = InnoDB,
-PARTITION p2021_02_19 VALUES LESS THAN (UNIX_TIMESTAMP("2021-02-20 00:00:00")) ENGINE = InnoDB,
-PARTITION p2021_02_20 VALUES LESS THAN (UNIX_TIMESTAMP("2021-02-21 00:00:00")) ENGINE = InnoDB,
-PARTITION p2021_02_21 VALUES LESS THAN (UNIX_TIMESTAMP("2021-02-22 00:00:00")) ENGINE = InnoDB,
-PARTITION p2021_02_22 VALUES LESS THAN (UNIX_TIMESTAMP("2021-02-23 00:00:00")) ENGINE = InnoDB);
+PARTITION p2020_12_22 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-23 00:00:00")) ENGINE = InnoDB
+;
 ```
 
-Введите свои даты
+Для работы параметры времени надо взять по дням от начала курса.
+вместо 2020_10-03 подставить свои значения
+
 таблица трендов рекомендация сделать по месяцам
 ```
 ALTER TABLE trends_uint PARTITION BY RANGE ( clock)
