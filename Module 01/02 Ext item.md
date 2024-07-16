@@ -344,3 +344,25 @@ Templates->Create template
       Type of information: Numeric (float)
 ```
 по аналогии добавить все остальные параметры.
+
+Задание 7. Глобальные скрипты
+
+Создание 
+
+```
+    Alert -> Scripts -> Create Script
+      Name: Время работы
+      Scope: Manual host action
+      Type: Script
+      Execute on : Zabbix server
+      Commands: secs=`zabbix_get -s {HOST.CONN} -p 10050 -k 'system.uptime'`
+      printf '%d дней, %d:%d:%d\n' $((secs/86400)) $((secs%86400/3600)) $((secs%3600/60)) $((secs%60))
+```
+```
+    Alert -> Scripts -> Create Script
+      Name: Кто на Linux
+      Scope: Manual host action
+      Type: Script
+      Execute on : Zabbix agent
+      Commands: who -dsTu
+```
