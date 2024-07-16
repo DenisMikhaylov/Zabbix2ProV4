@@ -37,11 +37,7 @@ SYSTEM DATA SOURCES: /etc/odbc.ini
 ```
 Настройка для MySQL. Изменяем название драйвера
 ```
-[madb]
-Driver=libmaodbc.so
-Description=MariaDB Connector/ODBC(Unicode)
-Threading=0
-UsageCount=1
+[MariaDB Unicode] на [madb] для упрощения настроек
 ```
 Открываем файл odb.ini
 ```
