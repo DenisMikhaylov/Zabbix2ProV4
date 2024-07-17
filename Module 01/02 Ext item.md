@@ -94,7 +94,7 @@ Host: Zabbix server
     Master item: Content folder
 Preprocessing steps: Add
 Name: JSONPATH
-Parameter: $..[?(@.basename == "{#STATUFILE}")].timestamp.modify
+Parameter: $.[?(@.basename == "{#STATUSFILE}")].timestamp.modify
 Preprocessing steps: Add
 Name: LeftTrim
 Parameter: [
@@ -328,7 +328,9 @@ Ip address указываем агента.
 Templates->Create template
   Template name: My Template Linux disks utilization
   Groups: Templates/Server hardware
-
+```
+Открыть созданный шаблон 
+```
   Discovery rules->
     Name: my disks discovery
     Key: my.disks.discovery
@@ -367,6 +369,9 @@ Alert - Actions - Auto registration
   Set host inventory mode: Automatic
 ```
 Подключиться к Windows сервер
+
+Если агента нет, установить zabbix agent.
+Инструкция по установки на сайте Zabbix
 
 Настройка агента на активный режим
 
