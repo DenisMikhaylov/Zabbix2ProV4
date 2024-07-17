@@ -81,7 +81,7 @@ export AUTH=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 3. Получение узлов из zabbix
 
-Созданеи скрипта
+Создание скрипта
 ```
 nano /root/zab_get_hosts.sh
 ```
@@ -92,21 +92,27 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
 {
     \"jsonrpc\": \"2.0\",
     \"method\": \"host.get\",
-    \"params\": {},
+    \"params\": {
+       \"output\": [\"hostid\", \"host\"],
+       \"selectInterfaces\": [\"interfaceid\", \"ip\"]
+    },
     \"auth\": \"${AUTH}\",
     \"id\": 2
 } " http://<имя сервера>/api_jsonrpc.php
 ```
 ```
-# /root/zab_get_hosts.sh | jq
+chmod +x /root/zab_get_hosts.sh
 ```
 
-Список имен узлов
+```
+# /root/zab_get_hosts.sh | jq
+```
 
 ```
 # /root/zab_get_hosts.sh | jq '.result | .[] | .name'
 ```
-Получение списка карт и их элементов из Zabbix
+
+4. Получение списка карт и их элементов из Zabbix
 
 ```
 # nano /root/zab_get_maps.sh
@@ -128,10 +134,43 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
 
 ```
 ```
+chmod +x /root/zab_get_maps.sh
+```
+```
 # /root/zab_get_maps.sh | jq -c '.result | .[] | {name: .name, id: .sysmapid}'
 ```
 
-Пример изменения конфигурации через Zabbix API
+5. Пример изменения конфигурации через Zabbix API
+
+Добавление элемента
+
+```
+# nano /root/additem.sh
+```
+```
+#!/bin/sh
+
+curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
+{
+ \"jsonrpc\": \"2.0\",
+ \"method\": \"item.create\",
+ \"params\": {
+    \"name\": \"Free disk space on $1\",
+    \"key_\": \"vfs.fs.size[/home/seanwasere/,free]\",
+    \"hostid\": \"10084\",
+    \"type\": 0,
+    \"value_type\": 3,
+    \"interfaceid\": \"1\",
+    \"delay\": 30
+    },
+    \"auth\": \"5bcf09c329707a0831803c925cf0b1a3ab802e0f5f35b4b239ec57374590312>
+    \"id\": 2
+}" http://zabbix.corp1.ru/api_jsonrpc.php
+```
+```
+chmod +x /root/additem.sh
+```
+Изминение имени карты
 
 ```
 # nano /root/zab_set_map_name.sh
@@ -156,5 +195,8 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
 } " http://<имя сервера>/api_jsonrpc.php
 ```
 ```
+chmod +x /root/zab_set_map_name.sh
+```
+```
 # /root/zab_set_map_name.sh <id> <Name map>
-
+```
