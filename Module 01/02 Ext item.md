@@ -312,8 +312,10 @@ apt install zabbix_get
 apt install jq
 ```
 
+Ip address указываем агента.
+Если расширялся агент на Zabbix server, указывается ip 127.0.0.1
 ```
-# zabbix_get -s ip server -k my.disks.discovery | jq
+# zabbix_get -s <ip server> -k my.disks.discovery | jq
 ```
 
 Шаг 2. Создание discovery
@@ -324,7 +326,8 @@ Host: Zabbix server
 ```
   Discovery rules:
      name: Storage file systems
-    key: Storage.discovery.config[/Storage.fs]
+     Type: Zabbix agent
+     key: Storage.discovery.config[/Storage.fs]
 
 ```
 Шаг 3. Создание Item
