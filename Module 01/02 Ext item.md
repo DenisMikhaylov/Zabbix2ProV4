@@ -190,6 +190,9 @@ fi
 speedtest-cli --csv $A | cut -d',' -f $F
 ```
 
+```
+chmod +x /etc/zabbix/externalscripts/speedtest.sh
+```
 Тестируем работу скрипта
 ```
 # /etc/zabbix/externalscripts/speedtest.sh upload
@@ -253,6 +256,9 @@ MY_UPLOAD=`echo $MY_RES | cut -d',' -f8`
 zabbix_sender -z 127.0.0.1 -p 10051 -s <Name host> -k speedtest.download -o $MY_DOWNLOAD
 zabbix_sender -z 127.0.0.1 -p 10051 -s <Name host> -k speedtest.upload -o $MY_UPLOAD
 ```
+```
+/etc/zabbix/externalscripts/speedtest.sh
+```
 Создаем новые Item
 ```
 zabbix->Items
@@ -272,7 +278,7 @@ zabbix->Items
 ```
 Запускаем скрипт
 ```
-/root/speedtest.sh
+chmod +x /etc/zabbix/externalscripts/speedtest.sh
 ```
 
 Задание 5. Пользовательские параметры
