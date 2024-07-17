@@ -308,6 +308,11 @@ systemctl restart zabbix-agent
 Проверяем работу нового параметра , переключаемся на zabbix
 
 ```
+apt install zabbix_get
+apt install jq
+```
+
+```
 # zabbix_get -s ip server -k my.disks.discovery | jq
 ```
 
