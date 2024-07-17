@@ -8,7 +8,9 @@
 Настройка лабораторного стенда:
 
 Virtual machines: Zabbix, Gate
+
 User name: root
+
 Password: Pa$$w0rd
 
 Основные задачи для лабораторной:
