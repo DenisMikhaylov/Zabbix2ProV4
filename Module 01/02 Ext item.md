@@ -319,19 +319,8 @@ Ip address указываем агента.
 # zabbix_get -s <ip server> -k my.disks.discovery | jq
 ```
 
-Шаг 2. Создание discovery
 
-```
-Host: Zabbix server
-```
-```
-  Discovery rules:
-     name: Storage file systems
-     Type: Zabbix agent
-     key: Storage.discovery.config[/Storage.fs]
-
-```
-Шаг 3. Создание Item
+Шаг 2. Создание Item
 Создайте item на остальные userparameter
 Создаем шаблон 
 
