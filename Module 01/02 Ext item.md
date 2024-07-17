@@ -229,7 +229,7 @@ Hosts->zabbix->Items
 ```
 Тестируем работу приложения
 ```
-zabbix_sender -z 192.168.10.103 -p 10051 -s <Name host> -k my.item -o 1
+zabbix_sender -z 192.168.10.41 -p 10051 -s <Name host> -k my.item -o 1
 ```
 Переделываем работы получение данных из speedtest
 
