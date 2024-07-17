@@ -141,6 +141,10 @@ systemctl restart zabbix-server
 #!/bin/sh
 ping -c"$1" "$2" | tail -n1 | cut -d'/' -f5
 ```
+
+```
+chmod +x /etc/zabbix/externalscripts/ping_avg.sh
+```
 Настройка элемента сбора информации
 ```
 >Hosts->zabbix
