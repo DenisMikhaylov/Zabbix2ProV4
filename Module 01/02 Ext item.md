@@ -17,7 +17,7 @@ Host: Zabbix server
 ```
   Items
     Name: HTTP Access Log
-    Type: agent zabbix active
+    Type: agent zabbix (active)
     Key: log[/var/log/nginx/access.log,"^.*",,,skip,\0,,,]
     Type of Information:	Log
 ```
