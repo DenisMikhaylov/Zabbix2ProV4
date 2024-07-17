@@ -140,7 +140,9 @@ systemctl restart zabbix-server
 ```
 #!/bin/sh
 ping -c"$1" "$2" | tail -n1 | cut -d'/' -f5
+```
 Настройка элемента сбора информации
+```
 >Hosts->zabbix
   Items
     Name: Ping AVG
