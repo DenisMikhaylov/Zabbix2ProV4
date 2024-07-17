@@ -231,6 +231,7 @@ Hosts->zabbix->Items
 # apt install zabbix-sender
 ```
 Тестируем работу приложения
+<Name host> - имя хоста в zabbix web интерфейсе
 ```
 zabbix_sender -z 192.168.10.41 -p 10051 -s <Name host> -k my.item -o 1
 ```
