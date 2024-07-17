@@ -17,31 +17,24 @@ SELECT FROM_UNIXTIME(MIN(clock)) FROM history_uint;
 Для работы параметры времени надо взять по дням от начала курса.
 вместо 2020_12_19-22 подставить свои значения
 
-таблица хистори рекомендация сделать по дням
+таблица хистори по месяцам
 ```
 ALTER TABLE history_uint PARTITION BY RANGE ( clock)
-(PARTITION p2020_12_19 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-20 00:00:00")) ENGINE = InnoDB,
-PARTITION p2020_12_20 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-21 00:00:00")) ENGINE = InnoDB,
-PARTITION p2020_12_21 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-22 00:00:00")) ENGINE = InnoDB,
-PARTITION p2020_12_22 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-23 00:00:00")) ENGINE = InnoDB
-;
+(PARTITION p2024_07 VALUES LESS THAN (UNIX_TIMESTAMP("2024-07-01 00:00:00")) ENGINE = InnoDB,
+PARTITION p2024_08 VALUES LESS THAN (UNIX_TIMESTAMP("2024-08-01 00:00:00")) ENGINE = InnoDB);
 ```
 
 Для работы параметры времени надо взять по дням от начала курса.
 вместо 2020_10-03 подставить свои значения
 
-таблица трендов рекомендация сделать по месяцам
+таблица трендов  по месяцам
 ```
 ALTER TABLE trends_uint PARTITION BY RANGE ( clock)
-(PARTITION p2020_10 VALUES LESS THAN (UNIX_TIMESTAMP("2020-11-01 00:00:00")) ENGINE = InnoDB,
-PARTITION p2020_11 VALUES LESS THAN (UNIX_TIMESTAMP("2020-12-01 00:00:00")) ENGINE = InnoDB,
-PARTITION p2020_12 VALUES LESS THAN (UNIX_TIMESTAMP("2021-01-01 00:00:00")) ENGINE = InnoDB,
-PARTITION p2021_01 VALUES LESS THAN (UNIX_TIMESTAMP("2021-02-01 00:00:00")) ENGINE = InnoDB,
-PARTITION p2021_02 VALUES LESS THAN (UNIX_TIMESTAMP("2021-03-01 00:00:00")) ENGINE = InnoDB,
-PARTITION p2021_03 VALUES LESS THAN (UNIX_TIMESTAMP("2021-04-01 00:00:00")) ENGINE = InnoDB);
+(PARTITION p2024_07 VALUES LESS THAN (UNIX_TIMESTAMP("2024-07-01 00:00:00")) ENGINE = InnoDB,
+PARTITION p2024_08 VALUES LESS THAN (UNIX_TIMESTAMP("2024-08-01 00:00:00")) ENGINE = InnoDB);
 ```
 
-Вариант сверху для примера и требует постоянного исправление дат
+Вариант сверху для примера и требует постоянного исправление даты
 
 есть вариант более прогрессивынй при помощи скриптов perl
 
