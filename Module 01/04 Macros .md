@@ -5,18 +5,40 @@
 ```
 http://zabbix.corp1.ru
 ```
+Создание пользовательских макросов
+Глобальные макросы: 
 
-Создание глобальных макросов
+Создание глобальных макросов, перейдите в меню Administration >  Macros 
+
+Нажимаем Add
 ```
-  Открыть меню
-Administration:
-    Macros:
-       Add:
-          Macro: {$SSH_PORT}
-          Value: 22
-          Description: Порт для подключения SHH
+Макрос: {$DISK_NAME}
+Значение: c:
+Описание: Макрос для диска с:
 ```
-Создание или настройка макросов хоста
+```
+Макрос:{$THRESHOLDCPU_WAR} 
+Значение: 50
+Описание: Предупреждение значение cpu
+```
+```
+Макрос:{$THRESHOLDCPU_CRIT} 
+Значение: 70
+Описание: Максимальное значение cpu
+```
+```
+Макрос:{$THRESHOLDDISK_LOW} 
+Значение: 5
+Описание: Минимальное свободное место в процентах
+```
+
+```
+Макрос: {$SSH_PORT}
+Значение: 22
+Описание: Порт для подключения SHH
+```
+
+Создание или настройка макросов хоста Zabbix server
 ```
   Открыть меню
 Data - collection:
@@ -28,6 +50,26 @@ Data - collection:
           Macro: {$HDD_FREE_PERCENT_THRESHOLD_CRITICAL}
           Value: 5
 ```
+Создание или настройка макросов хоста CLIENTN
+```
+Открыть меню
+Data - collection:
+    Hosts:
+       CLIENTN:
+          Macro:{$THRESHOLD_WMI_LOW} 
+          Value: 10
+```
+Создание элемента с использованием макроса 
+```
+Host: CLIENTN
+...
+  Items
+    Name: WMI object disk c: freespace
+    Type: agent zabbix active
+    Key: wmi.get[root\cimv2,SELECT FreeSpace FROM Win32_LogicalDisk WHERE DeviceID='{$DISK_NAME}']
+
+```
+
 Создание или настройка макросов Шаблона
 ```
 Открыть меню
@@ -45,6 +87,7 @@ Data - collection:
           Update interval: 30s
          Tag: ssh
 ```
+
 Добавить новый шаблон на сервер Zabbix
 ```
 Открыть меню
@@ -52,6 +95,7 @@ Data - collection:
     Hosts: Zabbix server
     Templates:  Template App SSH Port Service SSH Port Service
 ```
+
 Проверка значений 
 ```
 Monitors -> Latest data-> SSH service is running
