@@ -1,10 +1,6 @@
 Настройка MySQL с ODBC
 
-Установка компонентов на сервер
-```
-yum install unixODBC mariadb-connector-odbc
 
-```
 Настройка ODBC мониторинг MYSQL
 
 Установка ODBC драйвера на сервер c базой данных MYSQL
