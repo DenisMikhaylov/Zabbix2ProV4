@@ -51,18 +51,8 @@ Regular Expression:
 Output: \6
 Type : text
 ```
-Задание 2. Предобработки и троттлинг
 
-Шаг 1. Измените настройки предобработки простой проверки RDP availability:
-```
-Data collection > Hosts > Local Windows server > Items > RDP availability > Preprocessing
-```
-```
-Preprocessing steps: Add
-	Name: Discard unchanged
-```
-
-Задание 3. Зависимые элементы  и предобработка для файлов в папке
+Задание 2. Зависимые элементы  и предобработка для файлов в папке
 
 Шаг 1. Создание мастер элемента
 ```
@@ -114,7 +104,7 @@ Parameter: ]
 ```
 
 
-Задание 4. Внешние скрипты
+Задание 3. Внешние скрипты
 
 Шаг 1. Простой скрипт
 
@@ -223,7 +213,7 @@ Hosts->zabbix
     Units: bit/s
     Update interval: 30m
 ```
-Задание 5. Создание проверки на основе zabbix trapper
+Задание 4. Создание проверки на основе zabbix trapper
 
 Cоздаем item на zabbix
 ```
@@ -285,7 +275,7 @@ zabbix->Items
 /root/speedtest.sh
 ```
 
-Задание 6. Пользовательские параметры
+Задание 5. Пользовательские параметры
 
 ```
 nano /etc/zabbix/zabbix_agentd.d/hdd.conf
@@ -466,7 +456,7 @@ Host: CLIENTN
 
 
 
-Задание 7. Глобальные скрипты
+Задание 6. Глобальные скрипты
 
 Создание 
 
