@@ -98,7 +98,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     },
     \"auth\": \"${AUTH}\",
     \"id\": 2
-} " http://<имя сервера>/api_jsonrpc.php
+} " http://zabbix.corp1.ru/api_jsonrpc.php
 ```
 ```
 chmod +x /root/zab_get_hosts_env.sh
@@ -122,7 +122,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     },
     \"auth\": \"${AUTH}\",
     \"id\": 2
-} " http://<имя сервера>/api_jsonrpc.php
+} " http://zabbix.corp1.ru/api_jsonrpc.php
 ```
 ```
 chmod +x /root/zab_get_hosts.sh
@@ -150,7 +150,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     },
     \"auth\": \"${AUTH}\",
     \"id\": 2
-} " http://<имя сервера>/api_jsonrpc.php
+} " http://zabbix.corp1.ru/api_jsonrpc.php
 
 ```
 ```
@@ -212,7 +212,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     },
     \"auth\": \"${AUTH}\",
     \"id\": 2
-} " http://<имя сервера>/api_jsonrpc.php
+} " http://zabbix.corp1.ru/api_jsonrpc.php
 ```
 ```
 chmod +x /root/zab_set_map_name.sh
