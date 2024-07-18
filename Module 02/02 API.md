@@ -83,7 +83,7 @@ export AUTH=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 Создание скрипта
 ```
-nano /root/zab_get_hosts.sh
+nano /root/zab_get_hosts_env.sh
 ```
 ```
 #!/bin/sh
@@ -101,11 +101,31 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
 } " http://<имя сервера>/api_jsonrpc.php
 ```
 ```
-chmod +x /root/zab_get_hosts.sh
+chmod +x /root/zab_get_hosts_env.sh
 ```
 
 ```
-# /root/zab_get_hosts.sh | jq
+# /root/zab_get_hosts_env.sh | jq
+```
+Создание скрипта
+```
+nano /root/zab_get_hosts.sh
+```
+```
+#!/bin/sh
+
+curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
+{
+    \"jsonrpc\": \"2.0\",
+    \"method\": \"host.get\",
+    \"params\": {
+    },
+    \"auth\": \"${AUTH}\",
+    \"id\": 2
+} " http://<имя сервера>/api_jsonrpc.php
+```
+```
+chmod +x /root/zab_get_hosts.sh
 ```
 
 ```
@@ -161,7 +181,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     \"type\": 0,
     \"value_type\": 3,
     \"interfaceid\": \"1\",
-    \"delay\": 30
+    \"delay\": 30s
     },
     \"auth\": \"api token\",
     \"id\": 2
