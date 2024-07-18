@@ -163,7 +163,7 @@ curl -s -k -X POST -H 'Content-Type: application/json-rpc' -d "
     \"interfaceid\": \"1\",
     \"delay\": 30
     },
-    \"auth\": \"5bcf09c329707a0831803c925cf0b1a3ab802e0f5f35b4b239ec57374590312>
+    \"auth\": \"api token\",
     \"id\": 2
 }" http://zabbix.corp1.ru/api_jsonrpc.php
 ```
